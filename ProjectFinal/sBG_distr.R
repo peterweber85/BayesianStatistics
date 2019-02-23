@@ -1,11 +1,13 @@
 
+
 require(plotly)
 require(dplyr)
 
 # PARAMETERS --------------------------------------------------------------
 DATA_FOLDER <- "~/Google Drive/CMP Data Analysis/BayesProjectMaster/" # Set here folder of the data files
-REBILL_CYCLES_FOR_PARAM_ESTIMATION <- 4 # Set here 12 if you want to use all the data for parameter estimation
-FILENAME_PROD <- "SecondProduct.rds" # Choose here between the two files provided
+REBILL_CYCLES_FOR_PARAM_ESTIMATION <- 12 # Set here 12 if you want to use all the data for parameter estimation
+FILENAME_PROD <- "FirstProduct.rds" # Choose here between the two files provided
+
 max_alpha = 3
 max_beta = 2
 
@@ -146,11 +148,11 @@ if(TRUE){
                 add_trace(y = ~survivors_compl/survivors_compl[1], 
                           type = 'bar', 
                           name = 'Data') %>%
-                add_trace(y = ~survival_rate(t,alpha,beta), 
+                add_trace(y = ~survival_rate(t,alpha,beta),
                           type = 'scatter',
-                          mode = 'lines', 
+                          mode = 'lines',
                           name = paste0("Fit with a = ", round(alpha,2), ", b = ", round(beta,2))
-                          ) %>% 
+                          ) %>%
                 layout(legend = list(x = 0.3, y = 0.8),
                        yaxis = list(title = "Survival probability"),
                        xaxis = list(title = "rebill cycle"),
